@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+/*eslint-disable*/
+import { useState, useEffect } from "react";
 
 function App() {
+  const [cont, setCont] = useState(0);
+  const [action, setAction] = useState("");
+  const message = "Cuidado!";
+
+  const handleClick = () => {
+    setCont(cont + 1);
+    console.log(cont % 2 === 0, cont);
+  };
+  const handleClickRest = () => {
+    setCont(cont - 1);
+  };
+  useEffect(() => {
+    cont % 2 === 0
+      ? setAction("")
+      : (window.alert(message), setAction(message));
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>{cont}</p>
+      <button type="button" onClick={handleClick}>
+        suma
+      </button>
+      <button type="button" onClick={handleClickRest}>
+        resta
+      </button>
+      <p>{action}</p>
     </div>
   );
 }
